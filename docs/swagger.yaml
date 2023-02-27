@@ -1,0 +1,56 @@
+basePath: /v1
+definitions:
+  models.Credentials:
+    properties:
+      id_pengguna:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  models.TokenResponse:
+    properties:
+      token:
+        type: string
+    type: object
+host: localhost:80
+info:
+  contact:
+    email: fiber@swagger.io
+    name: API Support
+  description: HRIS Go Fiber API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Human Resource Information System
+  version: "1.0"
+paths:
+  /authorize:
+    post:
+      consumes:
+      - application/json
+      description: Get Token with the input payload
+      parameters:
+      - description: Get the Token
+        in: body
+        name: token
+        required: true
+        schema:
+          $ref: '#/definitions/models.Credentials'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TokenResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.TokenResponse'
+      summary: Authentication to Get Token
+      tags:
+      - Token
+swagger: "2.0"
